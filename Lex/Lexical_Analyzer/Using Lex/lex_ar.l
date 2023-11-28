@@ -2,8 +2,6 @@
     int COMMENT = 0;
 %}
 
-identifier [a-zA-Z_][a-zA-Z0-9_]*
-
 %%
 
 #.* {printf("\n%s is a preprocessor directive", yytext);}
@@ -16,7 +14,7 @@ int|float|char|printf|scanf|goto|while|do|for|if|else|return|struct {if (!COMMEN
 "//" {COMMENT = 1; printf("\n Comment Code");}
 \n {COMMENT = 0;}
 
-{identifier}([0-9]*)? {if (!COMMENT) printf("\n%s is an identifier", yytext);}
+[a-zA-Z_][a-zA-Z0-9_]*? {if (!COMMENT) printf("\n%s is an identifier", yytext);}
 
 \".*\" {if (!COMMENT) printf("\n%s is a STRING", yytext);}
 
