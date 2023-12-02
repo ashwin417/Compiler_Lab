@@ -13,6 +13,56 @@ Replace `programname.c` with the actual name of your C source code file.
 
 3. Run the compiled program:
 
+### Algorithm 
+
+ Algorithm for Operator Precedence Parsing
+
+1. Start
+2. Initialize variables: stack[20], ip[20], opt[10][10][1], ter[10], i, j, k, n, top=0, col, row.
+3. Set all elements in stack and ip arrays to NULL, and all elements in opt array to NULL.
+4. Print "Enter the no. of terminals:".
+5. Read the number of terminals (n).
+6. Print "Enter the terminals:".
+7. Read the terminal symbols into the ter array.
+8. Print "Enter the table values:".
+9. Loop over rows (i) from 0 to n:
+   a. Loop over columns (j) from 0 to n:
+      i. Print "Enter the value for ter[i] ter[j]:".
+      ii. Read the value into opt[i][j].
+10. Print "OPERATOR PRECEDENCE TABLE:".
+11. Loop over terminals (i) and print each terminal.
+12. Print a newline.
+13. Loop over rows (i) from 0 to n:
+   a. Print ter[i].
+   b. Loop over columns (j) from 0 to n and print opt[i][j][0].
+   c. Print a newline.
+14. Set stack[0] = '$'.
+15. Print "Enter the input string:".
+16. Read the input string into the ip array.
+17. Set i = 0.
+18. Print "STACK                INPUT STRING                ACTION".
+19. Print the initial values of stack and ip arrays.
+20. While i <= length of ip:
+    a. Loop over terminals (k) to find col corresponding to stack[top] and row corresponding to ip[i].
+    b. If stack[top] == '$' and ip[i] == '$':
+          i. Print "String is accepted".
+          ii. Break the loop.
+    c. If opt[col][row][0] is '<' or '=', then:
+          i. Increment top and push opt[col][row][0] onto the stack.
+          ii. Increment top and push ip[i] onto the stack.
+          iii. Print "Shift ip[i]".
+          iv. Increment i.
+    d. Otherwise, if opt[col][row][0] is '>', then:
+          i. While stack[top] is not '<', decrement top.
+          ii. Decrement top once more.
+          iii. Print "Reduce".
+    e. Otherwise:
+          i. Print "String is not accepted".
+          ii. Break the loop.
+    f. Print the current values of stack and ip arrays.
+21. End
+
+
 
 ## Explanation
 
