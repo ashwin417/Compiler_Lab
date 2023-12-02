@@ -42,3 +42,19 @@ This updated code is faster as compared to the previous code as the compiler doe
     + 3 b t1
     + 3 c t2
     + t1 t2 t3
+
+
+
+### Algorithm
+    Start
+    Call the input function:
+    Prompt the user to enter the maximum number of expressions.
+    For each expression, read the operation, operands, and result into the arr array. Initialize the flag field of each expression to 0.
+    Call the constant function:
+    For each expression in arr, check if the operands are digits or the operation is an assignment.
+    If so, compute the result of the operation and store it in res1.
+    Set the flag field of the expression to 1.
+    Call the change function with the current index and res1 to replace the operands in subsequent expressions.
+    Call the output function:
+    Print the optimized code by iterating over the arr array and printing each expression whose flag field is 0.
+    End
