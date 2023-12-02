@@ -56,6 +56,27 @@ The parser functions are designed to recognize expressions, terms, and factors b
 
 Recursive descent parsers are often hand-written, making them easy to understand and modify. They are especially useful for parsing languages with relatively simple syntax. However, they can be less efficient than other parsing techniques for complex grammars, and they may require additional techniques to address issues like left recursion in the grammar.
 
+### Algorithm
+Algorithm for Parsing Arithmetic Expressions
+
+1. Start
+2. Initialize a character array `input` and an integer `pos` to 0.
+3. Print "Enter an arithmetic expression: ".
+4. Read the input into the `input` array using `fgets`.
+5. Initialize an integer variable `result` to 0.
+6. Read the first term and store it in the variable `result`.
+7. While the current character is '+' or '-', do the following:
+   a. Read the operator and store it in the variable `op`.
+   b. Check if the next character is a valid operator (`*, /, +, -`). If yes, print an error and exit.
+   c. Read the next term and store it in the variable `right`.
+   d. If `op` is '+', add `right` to `result`; otherwise, subtract `right` from `result`.
+8. Check if the parsing reached the end of the input string:
+   a. If true, print "Parsing successful. Result: result".
+   b. If false, print "Parsing error at position pos".
+9. End
+
+
+
 ### Explanation for the Script:
 
 
