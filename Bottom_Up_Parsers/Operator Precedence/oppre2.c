@@ -15,7 +15,6 @@
 #include <string.h>
 void main()
 {
-<<<<<<< HEAD
   char stack[20], ip[20], opt[10][10][1], ter[10];
   int i, j, k, n, top = 0, col, row;
   for (i = 0; i < 10; i++)
@@ -111,7 +110,7 @@ void main()
     printf("\t\t\t");
   }
 }
-=======
+
 char stack[20],ip[20],opt[10][10][1],ter[10];
 int i,j,k,n,top=0,col,row;
 for(i=0;i<10;i++){stack[i]='\0'; ip[i]='\0';
@@ -183,4 +182,3 @@ printf("%c",ip[k]);
 printf("\t\t\t");
 }
 }
->>>>>>> 240ac98d6f024748d23abe6f80f13f38d41b5637
