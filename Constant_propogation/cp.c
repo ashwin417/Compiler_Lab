@@ -30,6 +30,7 @@ void input()
     printf("\n\nEnter the maximum number of expressions: ");
     scanf("%d", &n);
     printf("\nEnter the input:\n");
+    printf("Enter in the format \"Operator operand1 operand2 result\n e.g. if your expression is x  = y + z \nEnter \"+ y z x\"\n");
     for (i = 0; i < n; i++)
     {
         scanf("%s", arr[i].op);
