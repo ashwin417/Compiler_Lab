@@ -2,24 +2,33 @@
     int flag = 0;
 %}
 
-
 %%
-[a-z . 0-9]+@[a-z]+".com"|".in" { flag=1; }
+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,} { 
+    printf("Email accepted: %s\n", yytext); 
+    flag = 1;
+}
+[^\n]+ { 
+    flag = 0; 
+    if (!flag) {
+        printf("Email not accepted: %s\n", yytext);
+        flag = 0; 
+    }
+}
+
 %%
 
 int main(int argc, char **argv) {
     FILE *file;
     file = fopen("file.txt", "r");
     if (!file) {
-        printf("could not open the file");
+        printf("Could not open the file\n");
         exit(0);
     }
+
     yyin = file;
     yylex();
-    if (flag == 1) 
-        printf("\n email Accepted"); 
-    else
-        printf("\n email Not Accepted"); 
+   
+    fclose(file);
     printf("\n");
     return (0);
 }
