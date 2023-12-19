@@ -2,5 +2,12 @@ s7c131@cscl6d03:~/Documents/Compiler Lab$ lex lex_checkemail.l
 s7c131@cscl6d03:~/Documents/Compiler Lab$ gcc lex.yy.c
 s7c131@cscl6d03:~/Documents/Compiler Lab$ ./a.out
 
- email Accepted
-s7c131@cscl6d03:~/Documents/Compiler Lab$ 
+Email accepted: ash@gmail.com
+
+Email accepted: bbahhj@gmail.co
+
+Email accepted: jbb@gmail.com
+
+Email not accepted: rhis#ss
+
+Email accepted: ashwinr700@gmail.com
