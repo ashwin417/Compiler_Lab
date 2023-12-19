@@ -1,24 +1,15 @@
-// This is Aromal version. Upload this here for ease to learn.
-// C program to Construct of recursive descent parsing for
-// the following grammar
-// E->TE’
-// E’->+TE/@
-// T->FT’
-// T`->*FT’/@
-// F->(E)/id where @ represents null character
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
-#include<stdio.h>
-#include<ctype.h>
-#include<string.h>
 char input[100];
-int i, l;
+int i;
 
 int E();
-int EP();
+int EP(int val);
 int T();
-int TP();
+int TP(int val);
 int F();
-
 
 void main()
 {
@@ -26,99 +17,110 @@ void main()
     printf("\nE->TE'\nE'->+TE'/@\nT->FT'\nT'->*FT'/@\nF->(E)/ID\n");
     printf("\nEnter the string to be checked:");
     scanf("%s", input);
-    if (E())
-    {
-        if (input[i + 1] == '\0')
-            printf("\nString is accepted");
-        else
-            printf("\nString is not accepted");
-    }
+    i = 0;
+    int result = E();
+    if (result != -1 && input[i] == '\0')
+        printf("\nString is accepted\nResult=%d", result);
     else
-        printf("\nString not accepted");
+        printf("\nString is not accepted");
 }
+
 int E()
 {
-    if (T())
+    int val = T();
+    if (val != -1)
     {
-        if (EP())
-            return (1);
-        else
-            return (0);
+        return EP(val);
     }
     else
-        return (0);
+    {
+        return -1;
+    }
 }
-int EP()
+
+int EP(int val)
 {
     if (input[i] == '+')
     {
         i++;
-        if (T())
+        int t_val = T();
+        if (t_val != -1)
         {
-            if (EP())
-                return (1);
-            else
-                return (0);
+            return EP(val + t_val);
         }
         else
-            return (0);
+        {
+            return -1;
+        }
     }
     else
-        return (1);
+    {
+        return val;
+    }
 }
+
 int T()
 {
-    if (F())
+    int val = F();
+    if (val != -1)
     {
-        if (TP())
-            return (1);
-        else
-            return (0);
+        return TP(val);
     }
     else
-        return (0);
+    {
+        return -1;
+    }
 }
-int TP()
+
+int TP(int val)
 {
     if (input[i] == '*')
     {
         i++;
-        if (F())
+        int f_val = F();
+        if (f_val != -1)
         {
-            if (TP())
-                return (1);
-            else
-                return (0);
+            return TP(val * f_val);
         }
         else
-            return (0);
+        {
+            return -1;
+        }
     }
     else
-        return (1);
+    {
+        return val;
+    }
 }
+
 int F()
 {
     if (input[i] == '(')
     {
         i++;
-        if (E())
+        int e_val = E();
+        if (e_val != -1 && input[i] == ')')
         {
-            if (input[i] == ')')
-            {
-                i++;
-                return (1);
-            }
-            else
-                return (0);
+            i++;
+            return e_val;
         }
         else
-            return (0);
+        {
+            return -1;
+        }
     }
-    else if (input[i] >= 'a' && input[i] <= 'z' || input[i] >= 'A' && input[i] <= 'Z')
+    else if (isdigit(input[i]))
     {
-        i++;
-        return (1);
+        int val = 0;
+        while (isdigit(input[i]))
+        {
+            val = val * 10 + (input[i] - '0');
+            i++;
+        }
+        return val;
     }
     else
-        return (0);
+    {
+        return -1;
+    }
 }
